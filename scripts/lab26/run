@@ -1,0 +1,11 @@
+#!/bin/bash 
+
+
+
+for eachserver in `cat /tmp/scripts/lab26/servers`
+do 
+		ssh $eachserver firewall-cmd --permanent
+		ssh $eachserver firewall-cmd --zone=public --remove-icmp-block={echo-request,echo-reply,timestamp-reply,timestamp-request} --permanent
+		ssh $eachserver firewall-cmd --reload
+		echo Successfully disabled ping requests from $eachserver, preventing users from finding out if the server is alive or dead
+done

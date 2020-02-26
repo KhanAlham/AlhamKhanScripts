@@ -1,0 +1,22 @@
+#!/bin/bash
+
+a="sed -i '13s/.*/umask 002/' /home/httpadmin/.bash_profile"
+b="sed -i '13s/.*/umask 002/' /home/jbossadmin/.bash_profile"
+c="sed -i '13s/.*/umask 002/' /home/mysqladmin/.bash_profile"
+
+for web in `cat /tmp/scripts/lab31/webservers`
+do
+        for app in `cat /tmp/scripts/lab31/appservers`
+        do
+                for ddb in `cat /tmp/scripts/lab31/ddbservers`
+                do
+                ssh $web $a
+                echo "---[$httpadmin---Updated Successfully!]---"
+                ssh $app $b
+                echo "---[$jbossadmin---Updated Successfully!]---"
+                ssh $ddb $c
+                echo "---[$mysqladmin---Updated Successfully!]---"
+                done
+        done
+done
+

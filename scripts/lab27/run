@@ -1,0 +1,10 @@
+#!/bin/bash
+
+installpackages="net-tools glibc-devel libaio-devel gcc-c++ libgcc libXi compat-libstdc++-33 glibc-headers net-utils glibc font* openmotif cpp kernel-headers binutils glibc-devel libstdc++ redhat-lsb gcc nrpe compat-libcap1 libaio libXext sysstat gcc-c++ bind-utils gcc libaio-devel libXtst iotop"
+
+for eachserver in `cat /tmp/scripts/lab27/servers`
+do
+		echo Installing $installpackages on $eachserver
+		ssh $eachserver yum install -y $installpackages
+		echo Completed all installations on $eachserver
+done

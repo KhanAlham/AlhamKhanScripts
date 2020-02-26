@@ -1,0 +1,11 @@
+#!/bin/bash
+
+package="/tmp/jdk-8u241-linux-x64.rpm"
+
+for eachserver in `cat /tmp/scripts/lab28/servers`
+do
+		scp /root/jdk-8u241-linux-x64.rpm $eachserver:/tmp/jdk-8u241-linux-x64.rpm
+		echo Pushed JDK-8u241 to $eachserver
+		ssh $eachserver yum install -y $package
+		echo Installed JDK-8u241 on $eachserver
+done

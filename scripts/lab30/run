@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#pwd="--password 'R00tus@12'"
+
+for server in `cat /tmp/scripts/lab30/servers`
+do 
+			for	
+	scp -pr /home/httpadmin/.ssh/id_rsa $server:/home/httpadmin/.ssh/id_rsa
+
+done
